@@ -1,0 +1,267 @@
+/*
+ * src/style.css
+ *
+ * Global styles for the Live Markdown Editor application.
+ * This file defines the overall layout, typography, color scheme,
+ * and basic styling for the editor and preview panels.
+ * It also includes styles for rendered markdown elements.
+ */
+
+/* --- CSS Variables for Theming --- */
+:root {
+    --color-background-primary: #1e1e1e; /* Dark background */
+    --color-background-secondary: #252526; /* Slightly lighter dark for panels */
+    --color-background-tertiary: #333333; /* Even lighter dark for code blocks */
+    --color-text-primary: #cccccc; /* Light grey text */
+    --color-text-secondary: #999999; /* Muted grey text */
+    --color-accent: #007acc; /* VS Code blue */
+    --color-border: #3c3c3c; /* Dark grey border */
+    --color-scrollbar-thumb: #555;
+    --color-scrollbar-track: #2f2f2f;
+
+    --font-family-monospace: 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', monospace;
+    --font-family-sans-serif: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+
+    --spacing-unit: 1rem;
+    --border-radius: 4px;
+}
+
+/* --- Base Styles & Resets --- */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    font-family: var(--font-family-sans-serif);
+    color: var(--color-text-primary);
+    background-color: var(--color-background-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* --- Main Application Layout --- */
+#app {
+    display: flex;
+    height: 100vh; /* Full viewport height */
+    overflow: hidden; /* Prevent scrollbars on the main app container */
+}
+
+/* --- Editor Panel Styling --- */
+.editor-panel {
+    flex: 1; /* Takes up half the width */
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid var(--color-border);
+    background-color: var(--color-background-secondary);
+}
+
+.editor-panel textarea {
+    flex-grow: 1; /* Fills available vertical space */
+    width: 100%;
+    padding: var(--spacing-unit);
+    font-family: var(--font-family-monospace);
+    font-size: 1rem;
+    line-height: 1.5;
+    color: var(--color-text-primary);
+    background-color: var(--color-background-secondary);
+    border: none;
+    resize: none; /* Disable manual resizing */
+    outline: none; /* Remove focus outline */
+    caret-color: var(--color-accent); /* Customize caret color */
+}
+
+/* Custom Scrollbar for Editor */
+.editor-panel textarea::-webkit-scrollbar {
+    width: 10px;
+}
+.editor-panel textarea::-webkit-scrollbar-track {
+    background: var(--color-scrollbar-track);
+}
+.editor-panel textarea::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+    border-radius: 5px;
+    border: 2px solid var(--color-scrollbar-track);
+}
+.editor-panel textarea::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-accent);
+}
+
+/* --- Preview Panel Styling --- */
+.preview-panel {
+    flex: 1; /* Takes up half the width */
+    padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5); /* More horizontal padding */
+    overflow-y: auto; /* Enable vertical scrolling */
+    background-color: var(--color-background-secondary);
+}
+
+/* Custom Scrollbar for Preview */
+.preview-panel::-webkit-scrollbar {
+    width: 10px;
+}
+.preview-panel::-webkit-scrollbar-track {
+    background: var(--color-scrollbar-track);
+}
+.preview-panel::-webkit-scrollbar-thumb {
+    background-color: var(--color-scrollbar-thumb);
+    border-radius: 5px;
+    border: 2px solid var(--color-scrollbar-track);
+}
+.preview-panel::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-accent);
+}
+
+/* --- Markdown Rendered Elements Styling --- */
+.preview-panel h1, .preview-panel h2, .preview-panel h3,
+.preview-panel h4, .preview-panel h5, .preview-panel h6 {
+    color: var(--color-accent);
+    margin-top: calc(var(--spacing-unit) * 1.5);
+    margin-bottom: var(--spacing-unit);
+    line-height: 1.2;
+}
+
+.preview-panel h1 { font-size: 2.5em; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
+.preview-panel h2 { font-size: 2em; border-bottom: 1px solid var(--color-border); padding-bottom: 0.3em; }
+.preview-panel h3 { font-size: 1.75em; }
+.preview-panel h4 { font-size: 1.5em; }
+.preview-panel h5 { font-size: 1.25em; }
+.preview-panel h6 { font-size: 1em; color: var(--color-text-secondary); }
+
+.preview-panel p {
+    margin-bottom: var(--spacing-unit);
+}
+
+.preview-panel a {
+    color: var(--color-accent);
+    text-decoration: none;
+}
+.preview-panel a:hover {
+    text-decoration: underline;
+}
+
+.preview-panel ul, .preview-panel ol {
+    margin-left: calc(var(--spacing-unit) * 1.5);
+    margin-bottom: var(--spacing-unit);
+}
+.preview-panel ul li, .preview-panel ol li {
+    margin-bottom: 0.5rem;
+}
+
+.preview-panel blockquote {
+    border-left: 4px solid var(--color-accent);
+    padding-left: var(--spacing-unit);
+    margin: var(--spacing-unit) 0;
+    color: var(--color-text-secondary);
+    background-color: var(--color-background-tertiary);
+    border-radius: var(--border-radius);
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+}
+
+.preview-panel code {
+    font-family: var(--font-family-monospace);
+    background-color: var(--color-background-tertiary);
+    padding: 0.2em 0.4em;
+    border-radius: var(--border-radius);
+    font-size: 0.9em;
+    color: #e06c75; /* Example inline code color */
+}
+
+.preview-panel pre {
+    background-color: var(--color-background-tertiary);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    overflow-x: auto; /* Enable horizontal scrolling for wide code blocks */
+    margin: var(--spacing-unit) 0;
+}
+
+.preview-panel pre code {
+    display: block; /* Make code block fill pre container */
+    padding: 0;
+    background-color: transparent;
+    font-size: 0.9em;
+    line-height: 1.4;
+    color: #abb2bf; /* Default code text color for blocks */
+}
+
+/* Specific syntax highlighting classes (assuming highlight.js or similar) */
+/* These are examples and would typically be provided by the highlighting library's theme */
+.hljs-comment, .hljs-quote { color: #5c6370; font-style: italic; }
+.hljs-keyword, .hljs-selector-tag, .hljs-subst { color: #c678dd; }
+.hljs-number, .hljs-literal, .hljs-variable, .hljs-template-variable, .hljs-tag .hljs-attr { color: #d19a66; }
+.hljs-string, .hljs-doctag { color: #98c379; }
+.hljs-title, .hljs-section, .hljs-name, .hljs-type { color: #e6c07b; }
+.hljs-selector-id, .hljs-selector-class, .hljs-selector-attr, .hljs-selector-pseudo { color: #61afef; }
+.hljs-attribute, .hljs-attr { color: #e06c75; }
+.hljs-built_in, .hljs-builtin-name { color: #e6c07b; }
+.hljs-link { color: #61afef; }
+.hljs-meta { color: #5c6370; }
+.hljs-emphasis { font-style: italic; }
+.hljs-strong { font-weight: bold; }
+
+.preview-panel table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: var(--spacing-unit) 0;
+    background-color: var(--color-background-tertiary);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ensures border-radius applies to inner elements */
+}
+
+.preview-panel th, .preview-panel td {
+    border: 1px solid var(--color-border);
+    padding: 0.8em;
+    text-align: left;
+}
+
+.preview-panel th {
+    background-color: var(--color-background-primary);
+    font-weight: bold;
+    color: var(--color-accent);
+}
+
+.preview-panel tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.1); /* Slightly different background for even rows */
+}
+
+.preview-panel img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below image */
+    margin: var(--spacing-unit) auto; /* Center images */
+    border-radius: var(--border-radius);
+    border: 1px solid var(--color-border);
+}
+
+.preview-panel hr {
+    border: none;
+    border-top: 1px solid var(--color-border);
+    margin: calc(var(--spacing-unit) * 2) 0;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+    #app {
+        flex-direction: column; /* Stack editor and preview vertically */
+    }
+
+    .editor-panel, .preview-panel {
+        flex: none; /* Remove flex grow */
+        width: 100%; /* Take full width */
+        height: 50vh; /* Each takes half the viewport height */
+        border-right: none; /* Remove vertical border */
+    }
+
+    .editor-panel {
+        border-bottom: 1px solid var(--color-border); /* Add horizontal border */
+    }
+}
+
+@media (max-width: 480px) {
+    .preview-panel {
+        padding: var(--spacing-unit); /* Reduce padding on smaller screens */
+    }
+}
