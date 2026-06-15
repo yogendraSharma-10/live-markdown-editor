@@ -1,0 +1,49 @@
+```json
+{
+  "name": "live-markdown-editor",
+  "version": "1.0.0",
+  "description": "A web-based markdown editor that provides a real-time rendered preview of the entered markdown text, with syntax highlighting and local storage persistence.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "live-server --port=8080 --entry-file=index.html",
+    "dev": "npm start",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.css\" \"*.html\" \"*.md\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "markdown",
+    "editor",
+    "realtime",
+    "preview",
+    "syntax-highlighting",
+    "localstorage",
+    "javascript",
+    "html",
+    "css",
+    "web-app"
+  ],
+  "author": "Project Team",
+  "license": "MIT",
+  "dependencies": {
+    "dompurify": "^3.0.6",
+    "highlight.js": "^11.9.0",
+    "markdown-it": "^13.0.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "live-server": "^1.2.2",
+    "prettier": "^3.0.3"
+  },
+  "config": {
+    "// Note": "These configurations simulate integration points with other services in a microservice architecture.",
+    "canvasDrawingBoardApi": "http://localhost:3001/api/drawings",
+    "kanbanBoardApi": "http://localhost:3002/api/tasks",
+    "microserviceAuthService": "http://localhost:3000/api/auth"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}
+```
