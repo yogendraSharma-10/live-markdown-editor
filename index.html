@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Markdown Editor</title>
+    <!-- Favicon for a better user experience -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%%22 y=%2250%%22 style=%22dominant-baseline:central;text-anchor:middle;font-size:90px;%22>📝</text></svg>" type="image/svg+xml">
+    <!-- Link to the main stylesheet -->
+    <link rel="stylesheet" href="src/style.css">
+    <!-- Preload critical scripts for faster loading -->
+    <link rel="preload" href="src/main.js" as="script">
+    <link rel="preload" href="src/editor.js" as="script">
+    <link rel="preload" href="src/preview.js" as="script">
+    <link rel="preload" href="src/storage.js" as="script">
+</head>
+<body>
+    <header class="app-header">
+        <h1>Live Markdown Editor</h1>
+        <nav class="app-nav">
+            <!-- Example of cross-project navigation/links -->
+            <a href="/kanban" target="_blank" rel="noopener noreferrer" title="Go to Interactive Kanban Board">Kanban Board</a>
+            <a href="/drawing-board" target="_blank" rel="noopener noreferrer" title="Go to HTML Canvas Drawing Board">Drawing Board</a>
+            <button id="clear-storage-btn" title="Clear all saved markdown content">Clear Storage</button>
+        </nav>
+    </header>
+
+    <main class="editor-container">
+        <section class="editor-pane">
+            <label for="markdown-input" class="sr-only">Markdown Input</label>
+            <textarea id="markdown-input" placeholder="Start typing your markdown here..." spellcheck="false" autofocus></textarea>
+        </section>
+
+        <section class="preview-pane">
+            <div id="preview-output" class="markdown-body">
+                <!-- Rendered markdown will appear here -->
+                <p>Your markdown preview will appear here.</p>
+                <p>Try typing some markdown in the editor on the left!</p>
+                <pre><code>console.log("Hello, Markdown!");</code></pre>
+            </div>
+        </section>
+    </main>
+
+    <footer class="app-footer">
+        <p>&copy; <span id="current-year"></span> Live Markdown Editor. All rights reserved.</p>
+        <p>Powered by <a href="https://github.com/markedjs/marked" target="_blank" rel="noopener noreferrer">Marked.js</a> & <a href="https://highlightjs.org/" target="_blank" rel="noopener noreferrer">Highlight.js</a></p>
+    </footer>
+
+    <!-- Defer script loading to improve initial page render performance -->
+    <script type="module" src="src/main.js"></script>
+    <script>
+        // Set the current year dynamically in the footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
